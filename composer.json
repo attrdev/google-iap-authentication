@@ -1,0 +1,41 @@
+{
+    "name": "attraction/google-iap-authentication",
+    "type": "library",
+    "description": "Authenticate users using Google IAP",
+    "keywords": [
+        "google-iap",
+        "iap",
+        "authentication",
+        "permissions",
+        "login",
+        "google-iam",
+        "iam",
+        "google",
+        "google-cloud",
+        "gcp"
+    ],
+    "homepage": "https://attr.dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frederic Houle",
+            "email": "frederic@frederichoule.com",
+            "homepage": "https://frederichoule.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/attrdev/google-iap-authentication/issues",
+        "source": "https://github.com/attrdev/google-iap-authentication"
+    },
+    "require": {
+        "php": ">=7.4",
+        "google/auth": "^1.12",
+        "google/cloud-core": "^1.39",
+        "kelvinmo/simplejwt": "^0.4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Attraction\\": "src/Attraction"
+        }
+    }
+}
