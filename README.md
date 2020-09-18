@@ -26,7 +26,7 @@ $idToken = getallheaders()['X-Goog-Iap-Jwt-Assertion'] ?? '';
 
 $iap = new GoogleIAPAuthentication($projectId, $projectNumber);
 
-if($user = $iap->verify($idToken)) {
+if($user = $iap->validateAssertion($idToken)) {
     // User is authentified
     print(sprintf('Authentication succesful. Email Address: %s - Unique ID: %s', $user->emailAddress, $user->id));
 } else {
