@@ -7,7 +7,7 @@ A simple class to help you authenticate the users accessing your ressources thru
 It's recommended that you use [Composer](https://getcomposer.org/) to install google-iap-authentication.
 
 ```bash
-$ composer require attrdev/google-iap-authentication:^1.0
+$ composer require attraction/google-iap-authentication:^1.0
 ```
 
 This will install google-iap-authentication and all required dependencies. google-iap-authentication requires PHP 7.4 or newer.
