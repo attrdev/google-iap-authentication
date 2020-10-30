@@ -28,7 +28,7 @@
         "source": "https://github.com/attrdev/google-iap-authentication"
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.3",
         "google/auth": "^1.12",
         "google/cloud-core": "^1.39",
         "kelvinmo/simplejwt": "^0.4.1"
