@@ -24,28 +24,42 @@ class GoogleIAPAuthentication
         );
     }
 
-    public function validateAssertion(string $idToken)
+    public function validateAssertion(string $idToken, bool $stripPrefix = true): object
     {
-
         $auth = new \Google\Auth\AccessToken();
         $info = $auth->verify($idToken, [
-            'certsLocation' => \Google\Auth\AccessToken::IAP_CERT_URL
+            'certsLocation' => \Google\Auth\AccessToken::IAP_CERT_URL,
+            'throwException' => true,
         ]);
 
-        if (!$info || $info['iss'] != self::ISSUER || $info['aud'] != $this->getAudience()) {
-            return false;
+        $audience = $this->getAudience();
+        if ($audience != $info['aud'] ?? '') {
+            throw new \Exception(sprintf(
+                'Audience %s did not match expected %s',
+                $info['aud'],
+                $audience
+            ));
         }
 
-        $emailAddress = $info['email'] ?? false;
-        $id = $info['sub'] ?? false;
+        if ($info['iss'] != self::ISSUER) {
+            throw new \Exception(sprintf(
+                'Issuer %s did not match expected %s',
+                $info['iss'],
+                self::ISSUER
+            ));
+        }
 
-        if (!$emailAddress || !$id) {
-            return false;
+        $emailAddress = $info['email'];
+        $userId = $info['sub'];
+
+        if ($stripPrefix) {
+            $emailAddress = str_replace('accounts.google.com:', '', $emailAddress);
+            $userId = str_replace('accounts.google.com:', '', $userId);
         }
 
         return (object) [
             'emailAddress' => $emailAddress,
-            'id' => $id
+            'userId' => $userId
         ];
     }
 }
