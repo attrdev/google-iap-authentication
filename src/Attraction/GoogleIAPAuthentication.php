@@ -62,5 +62,4 @@ class GoogleIAPAuthentication
             'userId' => $userId
         ];
     }
-
 }
