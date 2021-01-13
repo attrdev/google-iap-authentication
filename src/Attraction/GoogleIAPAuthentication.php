@@ -24,7 +24,7 @@ class GoogleIAPAuthentication
         );
     }
 
-    public function validateAssertion(string $idToken, bool $stripPrefix): object
+    public function validateAssertion(string $idToken, bool $stripPrefix = true): object
     {
         $auth = new \Google\Auth\AccessToken();
         $info = $auth->verify($idToken, [
